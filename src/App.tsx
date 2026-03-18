@@ -32,6 +32,7 @@ const StudentAssessmentView = lazy(() => import('./views/StudentAssessmentView')
 const CodingView = lazy(() => import('./views/CodingView').then(m => ({ default: m.CodingView })));
 const GamePlayerView = lazy(() => import('./views/GamePlayerView'));
 const MapView = lazy(() => import('./views/MapView').then(m => ({ default: m.MapView })));
+const CalendarView = lazy(() => import('./views/CalendarView').then(m => ({ default: m.CalendarView })));
 
 const ViewLoader = () => (
   <div className="flex items-center justify-center p-20">
@@ -357,6 +358,7 @@ export default function App() {
     coding: t.coding,
     games: t.games,
     chat: t.chat,
+    calendar: t.calendar,
     library: t.library,
     pricing: t.pricing,
     settings: t.settings
@@ -443,6 +445,7 @@ export default function App() {
                 />
               )}
               {activeTab === 'chat' && <ChatView isApiOk={isApiOk} onOpenApiModal={openApiModal} />}
+              {activeTab === 'calendar' && <CalendarView />}
               {activeTab === 'library' && <LibraryView searchQuery={searchQuery} isApiOk={isApiOk} onOpenApiModal={openApiModal} addNotification={addNotification} t={t} />}
               {activeTab === 'games' && (
                 <GamesView 

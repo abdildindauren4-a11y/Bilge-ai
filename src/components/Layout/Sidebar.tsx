@@ -10,7 +10,8 @@ import {
   Settings,
   FileText,
   Code,
-  MapPin
+  MapPin,
+  Calendar
 } from 'lucide-react';
 
 import { translations, Language } from '../../lib/translations';
@@ -45,6 +46,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
     { id: 'coding', label: t.coding, icon: <Code size={18} /> },
     { id: 'games', label: t.games, icon: <Gamepad2 size={18} /> },
     { id: 'chat', label: t.chat, icon: <MessageSquare size={18} /> },
+    { id: 'calendar', label: t.calendar, icon: <Calendar size={18} /> },
     { id: 'library', label: t.library, icon: <BookOpen size={18} /> },
   ];
 
