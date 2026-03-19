@@ -32,19 +32,22 @@ Step 1: Generate a structured lesson outline:
 - Suggest tasks for each stage with increasing complexity following Bloom's Taxonomy (Recall → Comprehension → Application → Evaluation).
 - Include detailed Teacher Actions (Педагогтің әрекеті), Student Actions (Оқушының әрекеті), Assessment Methods (Бағалау), and suggested Resources (Ресурстар).
 - Ensure each task aligns directly with the provided Learning Objective (Оқу бағдарламасына сәйкес оқыту мақсаты).
+- IMPORTANT: All descriptions must be extremely detailed and comprehensive. Avoid short, generalized phrases. Provide full explanations of every activity, instruction, and task. Every action must be fully elaborated.
 
 Step 2: Convert the outline into the official lesson plan table format:
 - Structure the data as a JSON object matching the KMZHData interface.
 - Add SMART lesson objectives, assessment criteria, and language objectives.
 - Ensure resources and assessment are correctly aligned with each stage.
 - IMPORTANT: Create a detailed "descriptorsTable" that lists every major task/activity from the lesson plan, its specific descriptors (what the student should do to succeed), and the points assigned to each.
+- Descriptors must be thorough and extensive, specifying exactly what criteria are needed for each point awarded.
 
 Step 3: Validation:
 - Check if all stages have Teacher Actions, Student Actions, Assessment, and Resources.
 - Verify logical flow and complexity of tasks.
+- Ensure conclusion and feedback sections have specific, detailed explanations.
 - Correct any inconsistencies automatically.
 
-Output MUST be a valid JSON object in Kazakh language.`;
+Output MUST be a valid JSON object in Kazakh language. All text should be structured as if it were to be printed in 12pt Times New Roman font.`;
 
   const prompt = `Generate a complete, example-aligned, ready-to-use short-term lesson plan (ҚМЖ) for:
 Subject: ${params.subject}
@@ -61,6 +64,13 @@ Participants: ${params.participants}
 Absent: ${params.absent}
 Additional Requests: ${params.additionalRequests || "Жоқ"}
 Source Text/Context: ${params.sourceText || ""}
+
+IMPORTANT REQUIREMENTS:
+1. DETAILED LESSON PROCESS: Every action, task, and instruction must be fully elaborated and explained in detail. No short or vague descriptions.
+2. COMPREHENSIVE TASKS: Each task should be clearly described with step-by-step instructions.
+3. FEEDBACK & CONCLUSION: Provide specific, detailed explanations for the conclusion and feedback sections.
+4. EXTENSIVE DESCRIPTORS: Assessment descriptors must be thorough, clearly outlining the criteria for each point awarded for every task.
+5. FORMATTING: The content should be professional and formal, suitable for a 12pt Times New Roman document.
 
 The response must follow this JSON structure exactly:
 {

@@ -145,7 +145,6 @@ const DaySetupCard: React.FC<DaySetupCardProps> = ({ dayKey, lessons, onAdd, onR
 
         {lessons.length === 0 && !showForm ? (
           <div className="flex flex-col items-center justify-center h-full py-12 text-slate-400 text-sm border-2 border-dashed border-slate-100 dark:border-slate-800 rounded-3xl">
-            <Clock size={32} className="mb-3 opacity-20" />
             Сабақтар жоқ
           </div>
         ) : (
@@ -162,8 +161,8 @@ const DaySetupCard: React.FC<DaySetupCardProps> = ({ dayKey, lessons, onAdd, onR
               </div>
               <div className="font-black text-sm text-slate-800 dark:text-slate-200 mb-2">{lesson.subject}</div>
               <div className="flex items-center gap-4 text-[11px] text-slate-500 font-bold">
-                <span className="flex items-center gap-1.5"><Users size={12} className="text-blue-500" /> {lesson.grade} сынып</span>
-                <span className="flex items-center gap-1.5"><MapPin size={12} className="text-blue-500" /> {lesson.cabinet} каб.</span>
+                <span>{lesson.grade} сынып</span>
+                <span>{lesson.cabinet} каб.</span>
               </div>
             </div>
           ))
@@ -224,9 +223,6 @@ export const CalendarView: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 bg-white dark:bg-slate-900 p-8 rounded-[2rem] border border-slate-200 dark:border-slate-800 shadow-sm">
         <div className="flex items-center gap-5">
-          <div className="w-14 h-14 rounded-2xl bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center text-blue-600 shadow-inner">
-            <CalendarIcon size={28} />
-          </div>
           <div>
             <h1 className="text-3xl font-black tracking-tight">Күнтізбе</h1>
             <p className="text-sm text-slate-500 font-medium">Сабақ кестесі мен тақырыптарды басқару</p>
@@ -308,9 +304,6 @@ export const CalendarView: React.FC = () => {
 
           {!weekCycle ? (
             <div className="flex flex-col items-center justify-center py-24 bg-white dark:bg-slate-900 rounded-[2.5rem] border border-slate-200 dark:border-slate-800 text-center px-8 shadow-sm">
-              <div className="w-20 h-20 rounded-3xl bg-amber-50 dark:bg-amber-900/20 flex items-center justify-center text-amber-600 mb-6 shadow-inner">
-                <AlertCircle size={40} />
-              </div>
               <h3 className="text-2xl font-black mb-3">Бұл аптаға кесте орнатылмаған</h3>
               <p className="text-slate-500 max-w-sm mb-8 font-medium">Жұмысты бастау үшін оң жақ жоғарғы бұрыштағы "Жаңа кесте орнату" батырмасын басыңыз.</p>
               <button className="btn btn-primary px-8 py-3" onClick={endCycle}>
@@ -320,7 +313,7 @@ export const CalendarView: React.FC = () => {
           ) : (
             <div className={viewMode === 'grid' 
               ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-5" 
-              : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+              : "grid grid-cols-1 md:grid-cols-3 gap-6"
             }>
               {DAY_KEYS.map((dayKey, idx) => {
                 const dayDate = addDays(currentWeekStart, idx);
@@ -386,83 +379,60 @@ export const CalendarView: React.FC = () => {
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
               className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 w-full max-w-md shadow-2xl border border-slate-200 dark:border-slate-800"
             >
-              <h3 className="text-2xl font-black mb-8 text-slate-800 dark:text-slate-100 flex items-center gap-3">
-                <div className="w-12 h-12 rounded-2xl bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center text-blue-600" translate="no">
-                  <Plus size={28} />
-                </div>
+              <h3 className="text-2xl font-black mb-8 text-slate-800 dark:text-slate-100">
                 Сабақ қосу
               </h3>
               
               <div className="space-y-6" translate="no">
                 <div className="fg">
                   <label className="flabel mb-2">Уақыты</label>
-                  <div className="relative">
-                    <div className="absolute left-5 top-1/2 -translate-y-1/2 text-blue-500 pointer-events-none z-10 flex items-center justify-center" translate="no">
-                      <Clock size={20} />
-                    </div>
-                    <input 
-                      type="time" 
-                      className="inp pl-14 h-14 rounded-2xl border-slate-200 dark:border-slate-700 focus:border-blue-500 transition-all text-base font-bold w-full" 
-                      translate="no"
-                      autoComplete="off"
-                      value={newLesson.time}
-                      onChange={e => setNewLesson({...newLesson, time: e.target.value})}
-                    />
-                  </div>
+                  <input 
+                    type="time" 
+                    className="inp h-14 rounded-2xl border-slate-200 dark:border-slate-700 focus:border-blue-500 transition-all text-base font-bold w-full px-5" 
+                    translate="no"
+                    autoComplete="off"
+                    value={newLesson.time}
+                    onChange={e => setNewLesson({...newLesson, time: e.target.value})}
+                  />
                 </div>
 
                 <div className="fg">
                   <label className="flabel mb-2">Пән атауы</label>
-                  <div className="relative">
-                    <div className="absolute left-5 top-1/2 -translate-y-1/2 text-blue-500 pointer-events-none z-10 flex items-center justify-center" translate="no">
-                      <BookOpen size={20} />
-                    </div>
-                    <input 
-                      type="text" 
-                      className="inp pl-14 h-14 rounded-2xl border-slate-200 dark:border-slate-700 focus:border-blue-500 transition-all text-base font-bold w-full" 
-                      placeholder="Мысалы: Математика"
-                      translate="no"
-                      autoComplete="off"
-                      value={newLesson.subject}
-                      onChange={e => setNewLesson({...newLesson, subject: e.target.value})}
-                    />
-                  </div>
+                  <input 
+                    type="text" 
+                    className="inp h-14 rounded-2xl border-slate-200 dark:border-slate-700 focus:border-blue-500 transition-all text-base font-bold w-full px-5" 
+                    placeholder="Мысалы: Математика"
+                    translate="no"
+                    autoComplete="off"
+                    value={newLesson.subject}
+                    onChange={e => setNewLesson({...newLesson, subject: e.target.value})}
+                  />
                 </div>
 
                 <div className="grid grid-cols-2 gap-5">
                   <div className="fg">
                     <label className="flabel mb-2">Сынып</label>
-                    <div className="relative">
-                      <div className="absolute left-5 top-1/2 -translate-y-1/2 text-blue-500 pointer-events-none z-10 flex items-center justify-center" translate="no">
-                        <Users size={20} />
-                      </div>
-                      <input 
-                        type="text" 
-                        className="inp pl-14 h-14 rounded-2xl border-slate-200 dark:border-slate-700 focus:border-blue-500 transition-all text-base font-bold w-full" 
-                        placeholder="5А"
-                        translate="no"
-                        autoComplete="off"
-                        value={newLesson.grade}
-                        onChange={e => setNewLesson({...newLesson, grade: e.target.value})}
-                      />
-                    </div>
+                    <input 
+                      type="text" 
+                      className="inp h-14 rounded-2xl border-slate-200 dark:border-slate-700 focus:border-blue-500 transition-all text-base font-bold w-full px-5" 
+                      placeholder="5А"
+                      translate="no"
+                      autoComplete="off"
+                      value={newLesson.grade}
+                      onChange={e => setNewLesson({...newLesson, grade: e.target.value})}
+                    />
                   </div>
                   <div className="fg">
                     <label className="flabel mb-2">Кабинет</label>
-                    <div className="relative">
-                      <div className="absolute left-5 top-1/2 -translate-y-1/2 text-blue-500 pointer-events-none z-10 flex items-center justify-center" translate="no">
-                        <MapPin size={20} />
-                      </div>
-                      <input 
-                        type="text" 
-                        className="inp pl-14 h-14 rounded-2xl border-slate-200 dark:border-slate-700 focus:border-blue-500 transition-all text-base font-bold w-full" 
-                        placeholder="204"
-                        translate="no"
-                        autoComplete="off"
-                        value={newLesson.cabinet}
-                        onChange={e => setNewLesson({...newLesson, cabinet: e.target.value})}
-                      />
-                    </div>
+                    <input 
+                      type="text" 
+                      className="inp h-14 rounded-2xl border-slate-200 dark:border-slate-700 focus:border-blue-500 transition-all text-base font-bold w-full px-5" 
+                      placeholder="204"
+                      translate="no"
+                      autoComplete="off"
+                      value={newLesson.cabinet}
+                      onChange={e => setNewLesson({...newLesson, cabinet: e.target.value})}
+                    />
                   </div>
                 </div>
 

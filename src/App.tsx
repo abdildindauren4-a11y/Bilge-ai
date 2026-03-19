@@ -72,7 +72,7 @@ export default function App() {
     claudeKeyInput, setClaudeKeyInput,
     isSavingApi, isSavingClaude,
     saveApiKey, saveClaudeKey, clearApiKey
-  } = useApiKeys(user, showToast);
+  } = useApiKeys(user, showToast, setIsApiOk, setIsClaudeApiOk);
 
   const {
     kmzhLoading, setKmzhLoading,

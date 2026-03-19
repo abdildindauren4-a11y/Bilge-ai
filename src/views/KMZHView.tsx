@@ -376,14 +376,14 @@ export const KMZHView: React.FC<KMZHViewProps> = ({
             </div>
           </div>
           <div className="result-body overflow-x-auto">
-            <div className="max-w-full bg-white dark:bg-black p-4 md:p-6 shadow-sm border border-slate-200 dark:border-slate-800 rounded-lg mx-auto">
+            <div id="kmzh-content" className="max-w-full bg-white dark:bg-black p-4 md:p-6 shadow-sm border border-slate-200 dark:border-slate-800 rounded-lg mx-auto" style={{ fontFamily: "'Times New Roman', Times, serif", fontSize: '12pt' }}>
               <div className="text-center mb-4">
-                <div className="font-bold uppercase text-[10px] md:text-xs text-slate-500 dark:text-slate-400">{result.metadata.ministry}</div>
-                <div className="font-bold uppercase text-[10px] md:text-xs text-slate-500 dark:text-slate-400">{result.metadata.school}</div>
+                <div className="font-bold uppercase text-slate-500 dark:text-slate-400" style={{ fontSize: '10pt' }}>{result.metadata.ministry}</div>
+                <div className="font-bold uppercase text-slate-500 dark:text-slate-400" style={{ fontSize: '10pt' }}>{result.metadata.school}</div>
                 <div className="font-black text-lg md:text-xl mt-2">Қысқа мерзімді жоспар</div>
               </div>
 
-              <table className="w-full border-collapse border border-slate-400 dark:border-slate-600 text-[10px] md:text-xs mb-4">
+              <table className="w-full border-collapse border border-slate-400 dark:border-slate-600 mb-4" style={{ fontSize: '12pt' }}>
                 <tbody>
                   <tr>
                     <td className="border border-slate-400 dark:border-slate-600 p-1.5 font-bold bg-white dark:bg-black w-1/3">Білім беру ұйымының атауы</td>
@@ -424,7 +424,7 @@ export const KMZHView: React.FC<KMZHViewProps> = ({
                 </tbody>
               </table>
 
-              <div className="grid grid-cols-1 gap-y-2 text-[10px] md:text-xs mb-4 text-slate-900 dark:text-slate-100">
+              <div className="grid grid-cols-1 gap-y-2 mb-4 text-slate-900 dark:text-slate-100" style={{ fontSize: '12pt' }}>
                 <p><strong>Оқу бағдарламасына сәйкес оқыту мақсаты:</strong> {result.metadata.learningObjective}</p>
                 <p><strong>Сабақтың мақсаты:</strong> {result.metadata.lessonObjective}</p>
                 
@@ -458,10 +458,10 @@ export const KMZHView: React.FC<KMZHViewProps> = ({
                 </div>
               </div>
 
-              <div className="font-bold text-center mb-2 text-xs">САБАҚТЫҢ БАРЫСЫ</div>
+              <div className="font-bold text-center mb-2" style={{ fontSize: '12pt' }}>САБАҚТЫҢ БАРЫСЫ</div>
 
               <div className="overflow-x-auto">
-                <table className="w-full border-collapse border border-slate-400 dark:border-slate-600 text-[9px] md:text-[11px]">
+                <table className="w-full border-collapse border border-slate-400 dark:border-slate-600" style={{ fontSize: '12pt' }}>
                   <thead>
                     <tr className="bg-white dark:bg-black">
                       <th className="border border-slate-400 dark:border-slate-600 p-1.5 w-[12%]">Кезеңдер</th>
@@ -487,8 +487,8 @@ export const KMZHView: React.FC<KMZHViewProps> = ({
 
               {result.descriptorsTable && result.descriptorsTable.length > 0 && (
                 <div className="mt-8">
-                  <div className="font-bold text-center mb-2 text-xs uppercase">Тапсырмалардың дескрипторлары мен баллдары</div>
-                  <table className="w-full border-collapse border border-slate-400 dark:border-slate-600 text-[9px] md:text-[11px]">
+                  <div className="font-bold text-center mb-2 uppercase" style={{ fontSize: '12pt' }}>Тапсырмалардың дескрипторлары мен баллдары</div>
+                  <table className="w-full border-collapse border border-slate-400 dark:border-slate-600" style={{ fontSize: '12pt' }}>
                     <thead>
                       <tr className="bg-white dark:bg-black">
                         <th className="border border-slate-400 dark:border-slate-600 p-1.5 w-[30%]">Тапсырма атауы</th>
@@ -500,7 +500,7 @@ export const KMZHView: React.FC<KMZHViewProps> = ({
                       {result.descriptorsTable.map((desc: any, i: number) => (
                         <tr key={i}>
                           <td className="border border-slate-400 dark:border-slate-600 p-1.5 font-bold">{desc.taskName}</td>
-                          <td className="border border-slate-400 dark:border-slate-600 p-1.5">{desc.descriptor}</td>
+                          <td className="border border-slate-400 dark:border-slate-600 p-1.5 whitespace-pre-wrap">{desc.descriptor}</td>
                           <td className="border border-slate-400 dark:border-slate-600 p-1.5 text-center font-bold">{desc.points}</td>
                         </tr>
                       ))}
@@ -515,7 +515,7 @@ export const KMZHView: React.FC<KMZHViewProps> = ({
                 </div>
               )}
 
-                <div className="mt-4 text-[10px] md:text-xs space-y-2 text-slate-900 dark:text-slate-100">
+                <div className="mt-4 space-y-2 text-slate-900 dark:text-slate-100" style={{ fontSize: '12pt' }}>
                   <p><strong>Саралау:</strong> {result.differentiation}</p>
                   <p><strong>Бағалау:</strong> {result.assessmentCheck}</p>
                   <p><strong>Денсаулық және қауіпсіздік:</strong> {result.healthAndSafety}</p>
