@@ -30,16 +30,18 @@ interface DashboardViewProps {
 }
 
 export const DashboardView: React.FC<DashboardViewProps> = ({ user, onNavigate, searchQuery, t, onLogout }) => {
+  console.log('DashboardView: Rendering with user', user?.uid);
   const [stats, setStats] = useState({ kmzh: 0, games: 0 });
   const [recent, setRecent] = useState<any[]>([]);
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    if (user) {
+      fetchData();
+    }
+  }, [user?.uid]);
 
   const fetchData = async () => {
-    const user = auth.currentUser;
-    if (!user) return;
+    if (!user?.uid) return;
 
     try {
       const q = query(

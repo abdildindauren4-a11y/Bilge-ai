@@ -19,10 +19,8 @@ import { translations, Language } from './lib/translations';
 import { SettingsView } from './views/SettingsView';
 
 // Lazy load views
-import { DashboardView } from './views/DashboardView';
-import { KMZHView } from './views/KMZHView';
-// const DashboardView = lazy(() => import('./views/DashboardView').then(m => ({ default: m.DashboardView })));
-// const KMZHView = lazy(() => import('./views/KMZHView').then(m => ({ default: m.KMZHView })));
+const DashboardView = lazy(() => import('./views/DashboardView').then(m => ({ default: m.DashboardView })));
+const KMZHView = lazy(() => import('./views/KMZHView').then(m => ({ default: m.KMZHView })));
 const GamesView = lazy(() => import('./views/GamesView').then(m => ({ default: m.GamesView })));
 const ChatView = lazy(() => import('./views/ChatView').then(m => ({ default: m.ChatView })));
 const LibraryView = lazy(() => import('./views/LibraryView').then(m => ({ default: m.LibraryView })));
@@ -46,6 +44,10 @@ const ViewLoader = () => (
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('dashboard');
+  
+  useEffect(() => {
+    console.log('App: activeTab changed to', activeTab);
+  }, [activeTab]);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [toast, setToast] = useState({ show: false, message: '' });

@@ -38,6 +38,7 @@ Step 2: Convert the outline into the official lesson plan table format:
 - Structure the data as a JSON object matching the KMZHData interface.
 - Add SMART lesson objectives, assessment criteria, and language objectives.
 - Ensure resources and assessment are correctly aligned with each stage.
+- IMPORTANT: The 'assessment' field in the 'stages' table MUST contain the full descriptors and point allocations for each task in that stage, matching the information in the 'descriptorsTable'.
 - IMPORTANT: Create a detailed "descriptorsTable" that lists every major task/activity from the lesson plan, its specific descriptors (what the student should do to succeed), and the points assigned to each.
 - Descriptors must be thorough and extensive, specifying exactly what criteria are needed for each point awarded.
 
@@ -70,7 +71,8 @@ IMPORTANT REQUIREMENTS:
 2. COMPREHENSIVE TASKS: Each task should be clearly described with step-by-step instructions.
 3. FEEDBACK & CONCLUSION: Provide specific, detailed explanations for the conclusion and feedback sections.
 4. EXTENSIVE DESCRIPTORS: Assessment descriptors must be thorough, clearly outlining the criteria for each point awarded for every task.
-5. FORMATTING: The content should be professional and formal, suitable for a 12pt Times New Roman document.
+5. ASSESSMENT IN STAGES: The 'assessment' column in the lesson stages table MUST include the full descriptors and point values for each task, exactly as they appear in the descriptors table at the bottom.
+6. FORMATTING: The content should be professional and formal, suitable for a 12pt Times New Roman document.
 
 The response must follow this JSON structure exactly:
 {
